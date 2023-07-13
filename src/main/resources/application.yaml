@@ -1,0 +1,27 @@
+spring.jpa:
+  show-sql: false
+  hibernate.ddl-auto: update
+spring.main.web-application-type: none
+logging.level:
+  org.springframework.web.reactive.function.client.ExchangeFunctions: INFO
+  com.github.marceloleite2604.cryptotrader: INFO
+
+crypto-trader:
+  mercado-bitcoin:
+    base-uri: https://api.mercadobitcoin.net/api/v4/
+    client-id: ${CLIENT_ID}
+    client-secret: ${CLIENT_SECRET}
+  mail:
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_PASSWORD}
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    recipients: ${EMAIL_RECIPIENTS}
+  monitoring:
+    actives:
+      - BTC
+      - LTC
+      - ETH
+    precision: 1d
+    quantity: 12
+    profit-threshold: 0.1
