@@ -7,7 +7,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: java8
-      Handler: com.github.marceloleite2604.App::handleRequest
+      Handler: com.github.marceloleite2604.crypto.App::handleRequest
       Timeout: 60
       MemorySize: 512
       CodeUri: ./target/cryptotrader.jar

@@ -1,5 +1,6 @@
 spring.jpa.show-sql: false
 logging.level:
+  root: DEBUG
   org.springframework.web.reactive.function.client.ExchangeFunctions: DEBUG
   com.github.marceloleite2604.cryptotrader: DEBUG
   com.github.marceloleite2604.cryptotrader.service.pattern: INFO

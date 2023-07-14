@@ -1,19 +1,16 @@
-package com.github.marceloleite2604.cryptotrader;
+package com.github.marceloleite2604.cryptotrader.controller;
 
 import com.github.marceloleite2604.cryptotrader.service.AccountService;
 import com.github.marceloleite2604.cryptotrader.service.AnalyserService;
 import com.github.marceloleite2604.cryptotrader.service.actionexecutor.ActionExecutor;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Component
+@RestController
 @RequiredArgsConstructor
-@Slf4j
-@Order(2)
-public class AnalyserCommandLineRunner implements CommandLineRunner {
+public class DefaultController {
 
   private final AccountService accountService;
 
@@ -21,14 +18,13 @@ public class AnalyserCommandLineRunner implements CommandLineRunner {
 
   private final ActionExecutor mailService;
 
-  @Override
-  public void run(String... args) {
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public void get() {
 
     final var account = accountService.retrieve();
 
     final var actions = analyserService.analyse(account);
 
     mailService.execute(actions);
-
   }
 }
