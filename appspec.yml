@@ -1,0 +1,7 @@
+version: 0.0
+Resources:
+  - crypto-trader:
+      Type: AWS::Lambda::Function
+      Properties:
+        Name: crypto-trader
+        Alias: prod
