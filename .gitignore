@@ -2,3 +2,5 @@
 **/target
 run.sh
 event.json
+samconfig.toml
+package.yml
