@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -49,7 +50,7 @@ class TickersService {
 
     final var queryParameterSymbolsNameValuePair = Stream.of(symbols)
       .map(symbol -> (NameValuePair) new BasicNameValuePair("symbols", symbol))
-      .toList();
+      .collect(Collectors.toList());;
 
     return new URIBuilder().setPathSegments("tickers")
       .addParameters(queryParameterSymbolsNameValuePair)

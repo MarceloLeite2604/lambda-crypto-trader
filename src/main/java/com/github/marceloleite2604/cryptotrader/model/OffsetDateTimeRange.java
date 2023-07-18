@@ -17,8 +17,8 @@ public class OffsetDateTimeRange {
   private final OffsetDateTime end;
 
   public boolean isBetween(OffsetDateTime offsetDateTime) {
-    return start.compareTo(offsetDateTime) <= 0 &&
-      end.compareTo(offsetDateTime) > 0;
+    return !start.isAfter(offsetDateTime) &&
+           end.isAfter(offsetDateTime);
   }
 
   public Duration getDuration() {
@@ -27,7 +27,8 @@ public class OffsetDateTimeRange {
 
   public boolean equals(final Object o) {
     if (o == this) return true;
-    if (!(o instanceof final OffsetDateTimeRange other)) return false;
+    if (!(o instanceof OffsetDateTimeRange)) return false;
+    final OffsetDateTimeRange other = (OffsetDateTimeRange)o;
     if (!other.canEqual(this)) return false;
     final Object thisStart = this.getStart();
     final Object otherStart = other.getStart();

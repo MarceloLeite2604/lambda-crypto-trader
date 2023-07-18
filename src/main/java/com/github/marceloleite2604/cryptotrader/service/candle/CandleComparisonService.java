@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 @Slf4j
@@ -83,7 +84,7 @@ public class CandleComparisonService {
 
     final var sizes = candles.stream()
       .map(sizeGetter)
-      .toList();
+      .collect(Collectors.toList());;
 
     for (BigDecimal size : sizes) {
 

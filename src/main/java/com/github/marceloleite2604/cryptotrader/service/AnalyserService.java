@@ -25,6 +25,7 @@ import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -49,7 +50,7 @@ public class AnalyserService {
       .map(active -> analyse(account, active))
       .filter(Optional::isPresent)
       .map(Optional::get)
-      .toList();
+      .collect(Collectors.toList());
   }
 
   private Optional<Action> analyse(Account account, Active active) {

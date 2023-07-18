@@ -20,6 +20,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -64,7 +65,7 @@ public class MercadoBitcoinService {
   public Map<String, Ticker> retrieveTickers(Active... actives) {
     final var symbols = Arrays.stream(actives)
       .map(Active::getSymbol)
-      .toList()
+      .collect(Collectors.toList())
       .toArray(String[]::new);
     return tickersService.retrieve(symbols);
   }

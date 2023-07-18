@@ -202,7 +202,7 @@ public class CandleService {
     return candlesByTimeRange.values()
       .stream()
       .sorted(Comparator.comparing(Candle::getTimestamp))
-      .toList();
+      .collect(Collectors.toList());
   }
 
   private Map<OffsetDateTimeRange, Candle> addEmptyCandles(Map<OffsetDateTimeRange, Optional<Candle>> candlesByTimeRange) {
@@ -210,7 +210,7 @@ public class CandleService {
       .stream()
       .sorted(Comparator.comparing(e -> e.getKey()
         .getStart()))
-      .toList();
+      .collect(Collectors.toList());
 
     Map<OffsetDateTimeRange, Candle> result = new HashMap<>();
     Candle previousCandle = null;

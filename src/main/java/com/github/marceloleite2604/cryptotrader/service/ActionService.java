@@ -13,6 +13,7 @@ import org.springframework.util.Assert;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +35,7 @@ public class ActionService {
 
     final var reasons = patternMatches.stream()
       .map(patternMatch -> elaborateReason(patternMatch, profit))
-      .toList();
+      .collect(Collectors.toList());
 
     return Action.builder()
       .side(side)
@@ -61,6 +62,6 @@ public class ActionService {
 
     return actions.stream()
       .filter(action -> side.equals(action.getSide()))
-      .toList();
+      .collect(Collectors.toList());
   }
 }

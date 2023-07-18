@@ -94,7 +94,7 @@ public class ListActionsToMailMapper extends MailMapper<List<Action>> {
   private List<String> elaborateSentences(List<Action> actions) {
     return actions.stream()
       .map(this::elaborateTextParagraph)
-      .toList();
+      .collect(Collectors.toList());
   }
 
   private String elaborateTextParagraph(Action action) {

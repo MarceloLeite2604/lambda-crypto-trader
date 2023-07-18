@@ -25,7 +25,7 @@ public class AccountService {
     final var actives = monitoringProperties.getActives()
       .stream()
       .map(Active::findByBase)
-      .toList();
+        .collect(Collectors.toList());
 
     final var balances = actives.stream()
       .collect(Collectors.toMap(
