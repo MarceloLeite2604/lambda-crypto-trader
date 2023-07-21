@@ -15,10 +15,10 @@ Resources:
         Type: AllAtOnce
       Environment:
         Variables:
-          CLIENT_ID: "{{resolve:ssm:/lambda-crypto-trader/client-id}}"
-          CLIENT_SECRET: "{{resolve:ssm:/lambda-crypto-trader/client-secret}}"
-          EMAIL_HOST: "{{resolve:ssm:/lambda-crypto-trader/email-host}}"
-          EMAIL_PASSWORD: "{{resolve:ssm:/lambda-crypto-trader/email-password}}"
-          EMAIL_PORT: "{{resolve:ssm:/lambda-crypto-trader/email-port}}"
-          EMAIL_RECIPIENTS: "{{resolve:ssm:/lambda-crypto-trader/email-recipients}}"
-          EMAIL_USERNAME: "{{resolve:ssm:/lambda-crypto-trader/email-username}}"
+          CLIENT_ID: "{{resolve:ssm-secure:/lambda-crypto-trader/client-id}}"
+          CLIENT_SECRET: "{{resolve:ssm-secure:/lambda-crypto-trader/client-secret}}"
+          EMAIL_HOST: "{{resolve:ssm-secure:/lambda-crypto-trader/email-host}}"
+          EMAIL_PASSWORD: "{{resolve:ssm-secure:/lambda-crypto-trader/email-password}}"
+          EMAIL_PORT: "{{resolve:ssm-secure:/lambda-crypto-trader/email-port}}"
+          EMAIL_RECIPIENTS: "{{resolve:ssm-secure:/lambda-crypto-trader/email-recipients}}"
+          EMAIL_USERNAME: "{{resolve:ssm-secure:/lambda-crypto-trader/email-username}}"
