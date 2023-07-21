@@ -1,21 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Crypto Trader
-Parameters:
-  MbClientId:
-    Type: String
-  MbClientSecret:
-    Type: String
-  EmailHost:
-    Type: String
-  EmailPassword:
-    Type: String
-  EmailPort:
-    Type: String
-  EmailRecipients:
-    Type: String
-  EmailUsername:
-    Type: String
 Resources:
   cryptoTrader:
     Type: AWS::Serverless::Function
@@ -30,10 +15,10 @@ Resources:
         Type: AllAtOnce
       Environment:
         Variables:
-          CLIENT_ID: !Ref MbClientId
-          CLIENT_SECRET: !Ref MbClientSecret
-          EMAIL_HOST: !Ref EmailHost
-          EMAIL_PASSWORD: !Ref EmailPassword
-          EMAIL_PORT: !Ref EmailPort
-          EMAIL_RECIPIENTS: !Ref EmailRecipients
-          EMAIL_USERNAME: !Ref EmailUsername
+          CLIENT_ID: "{{resolve:ssm:/lambda-crypto-trader/client-id}}"
+          CLIENT_SECRET: "{{resolve:ssm:/lambda-crypto-trader/client-secret}}"
+          EMAIL_HOST: "{{resolve:ssm:/lambda-crypto-trader/email-host}}"
+          EMAIL_PASSWORD: "{{resolve:ssm:/lambda-crypto-trader/email-password}}"
+          EMAIL_PORT: "{{resolve:ssm:/lambda-crypto-trader/email-port}}"
+          EMAIL_RECIPIENTS: "{{resolve:ssm:/lambda-crypto-trader/email-recipients}}"
+          EMAIL_USERNAME: "{{resolve:ssm:/lambda-crypto-trader/email-username}}"
