@@ -10,7 +10,6 @@ phases:
     commands:
       - echo Entered the build phase
       - echo Build started on `date`
-      - mvn package
       - >
         sam package 
         --template-file template.yaml
@@ -22,11 +21,6 @@ phases:
         --template-file package.yml 
         --stack-name sam-lambda-crypto-trader
         --capabilities CAPABILITY_IAM
-#        --config-file samconfig.toml
-artifacts:
- files:
-   - target/crypto-trader.jar
-   - appspec.yml
 cache:
   paths:
     - '/root/.m2'
