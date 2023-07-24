@@ -25,3 +25,4 @@ phases:
 cache:
   paths:
     - '/root/.m2'
+    - '/var/cache/apt/archives'
