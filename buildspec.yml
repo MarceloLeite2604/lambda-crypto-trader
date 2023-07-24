@@ -24,5 +24,5 @@ phases:
         --capabilities CAPABILITY_IAM
 cache:
   paths:
-    - '/root/.m2'
-    - '/var/cache/apt/archives'
+    - '/root/.m2/'
+    - '/var/cache/apt/archives/'
