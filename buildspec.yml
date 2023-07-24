@@ -11,17 +11,17 @@ phases:
       - echo Entered the build phase
       - echo Build started on `date`
       - mvn package
-#      - >
-#        sam package
-#        --template-file template.yaml
-#        --output-template-file package.yml
-#        --s3-bucket marceloleite2604-aws-v1-lambdas
-#        --s3-prefix crypto-trader/build
-#      - >
-#        sam deploy
-#        --template-file package.yml
-#        --stack-name sam-lambda-crypto-trader
-#        --capabilities CAPABILITY_IAM
+      - >
+        sam package 
+        --template-file template.yaml
+        --output-template-file package.yml
+        --s3-bucket marceloleite2604-aws-v1-lambdas
+        --s3-prefix crypto-trader/build
+      - >
+        sam deploy 
+        --template-file package.yml 
+        --stack-name sam-lambda-crypto-trader
+        --capabilities CAPABILITY_IAM
 cache:
   paths:
     - '/root/.m2'
