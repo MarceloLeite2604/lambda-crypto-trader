@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Crypto Trader
+Description: Sam Stack for Crypto Trader
 Resources:
-  cryptoTrader:
+  CryptoTrader:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: java11
@@ -22,3 +22,43 @@ Resources:
           EMAIL_PORT: "{{resolve:ssm:/lambda-crypto-trader/email-port}}"
           EMAIL_RECIPIENTS: "{{resolve:ssm:/lambda-crypto-trader/email-recipients}}"
           EMAIL_USERNAME: "{{resolve:ssm:/lambda-crypto-trader/email-username}}"
+  ScheduleDailyAt3AmUtc:
+    Type: AWS::Events::Rule
+    Properties:
+      Description: "Event triggered everyday at 3 AM UTC"
+      ScheduleExpression: "cron(0 3 * * ? *)"
+      State: "ENABLED"
+      Targets:
+        -
+          Id: "CryptoTraderExecution"
+          Arn:
+            Fn::Join:
+              - ':'
+              - - Fn::GetAtt:
+                  - "CryptoTrader"
+                  - "Arn"
+                - "prod"
+          Input: |-
+            {
+                "path": "/",
+                "httpMethod": "GET"
+            }
+          RetryPolicy:
+            MaximumEventAgeInSeconds: 3600
+            MaximumRetryAttempts: 2
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::Join:
+          - ':'
+          - - Fn::GetAtt:
+              - "CryptoTrader"
+              - "Arn"
+            - "prod"
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn:
+        Fn::GetAtt:
+          - "ScheduleDailyAt3AmUtc"
+          - "Arn"
