@@ -5,3 +5,4 @@ event.json
 samconfig.toml
 package.yml
 **/.aws-sam
+**/*.iml
