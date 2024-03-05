@@ -19,8 +19,12 @@ crypto-trader:
   monitoring:
     actives:
       - BTC
-      - LTC
       - ETH
+      - DOGE
+      - SHIB
+      - MIR
+      - PEPE
+      - GST
     precision: 1d
     quantity: 12
     profit-threshold: 0.1
