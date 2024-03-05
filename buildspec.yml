@@ -20,7 +20,7 @@ phases:
       - >
         sam deploy 
         --template-file package.yml 
-        --stack-name sam-lambda-crypto-trader
+        --stack-name SamCryptoTrader
         --capabilities CAPABILITY_IAM
 cache:
   paths:
